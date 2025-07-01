@@ -225,6 +225,7 @@ footer {
 }
 
 /*Next and Previous Buttons*/
+/*
 .Previous,
 .Next {
     z-index: 5;
@@ -241,7 +242,7 @@ footer {
 .Next:hover {
     background-color: rgba(0, 0, 0, 0.8);
     color: white;
-}
+} */
 
 .slideshowText {
     color: white;
