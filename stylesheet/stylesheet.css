@@ -1,6 +1,25 @@
 /*GENERAL STYLING*/
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     margin: 0%;
+    opacity: 1;
+    transition: 3s opacity;
+    /*Creates a fade in effect*/
+    letter-spacing: .2vw;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 14px;
+    overflow-x: hidden;
+    /*No horizontal scroll*/
+    user-select: none;
+    /*User cannot select text*/
+}
+
+body.fade-out {
+    opacity: .1;
+    /*Sets opacity upon page load*/
 }
 
 /*H1 Heading Tag Styles*/
@@ -10,7 +29,6 @@ h1 {
     text-align: center;
     margin-top: 3%;
     color: rgb(8, 8, 44);
-    transition: 1s ease;
 }
 
 h1:hover {
@@ -21,6 +39,7 @@ h1:hover {
 /*Styling for the portfolio's title text and quote.*/
 .violet-text {
     color: rgb(197, 110, 231);
+    padding-top: 10vh;
 }
 
 q {
@@ -34,18 +53,18 @@ q {
 /*Anchors*/
 a {
     color: blue;
+    cursor: pointer;
     text-decoration: none;
 }
 
 /*Images*/
 img {
     filter: blur(2px);
-    border-radius: 10px;
+    border-radius: 8px;
     max-width: 100%;
-    height: 240px;
+    height: 100%;
     display: block;
-    margin-left: auto;
-    margin-right: auto;
+    margin: auto auto auto auto;
     transition: filter 1s ease;
 }
 
@@ -54,21 +73,17 @@ img:hover {
     transition: filter 1s ease;
 }
 
-@media screen and (max-width: 576px) {
-    img{
-        height: 100px;
-        margin-top: 150px;
-    }
-}
 
 /*Footer*/
-footer{
+footer {
     padding: 2%;
     background-color: white;
 }
 
+/*GENERAL STYLING SIGNING OFF*/
+
 /*NAV-BARRR!!!*/
-.navbar{
+.navbar {
     overflow: hidden;
     background-color: black;
     position: fixed;
@@ -79,53 +94,61 @@ footer{
     animation: moveNav 5s;
 }
 
-/*This part is for moveNav, but that's a bit beyond me at present.*/
-@keyframes moveNav{
-    from {left: -100vw;}
-    to {eft: 0vw;}  /*The summed effect of these two lines is to move the navbar into place on the screen.*/
+/*This part is for moveNav, it scrolls it down.*/
+@keyframes moveNav {
+    from {
+        left: -100vw;
+    }
+
+    to {
+        left: 0vw;
+    }
+
+    /*The summed effect of these two lines is to move the navbar into place on the screen.*/
 }
 
 /*IDK it fixes the text in the same way?*/
-@keyframes moveNavText{
-    from {left: -100vw;}
-    to {eft: 0vw;}  /*The summed effect of these two lines is to move the navbar into place on the screen.*/
+@keyframes moveNavText {
+    from {
+        top: -100vw;
+    }
+
+    to {
+        top: 0vw;
+    }
+
+    /*The summed effect of these two lines is to move the navbar into place on the screen.*/
 }
 
 
 /*navbar links*/
-.navbar a{
-float: left;
-display: block;
-color: white;
-padding: 14px 16px;
-text-decoration: none;
-font-family: 'Courier New', Courier, monospace;
-font-size: 20px;
-text-align: center;
-position: relative;
--webkit-animation: moveNavText 5.75s;
-animation: moveNavText 5.75s;
+.navbar a {
+    float: left;
+    display: block;
+    color: white;
+    padding: .75vw 1vw;
+    text-decoration: none;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1.5vw;
+    text-align: center;
+    position: relative;
+    -webkit-animation: moveNavText 5.75s;
+    animation: moveNavText 5.75s;
 }
 
-/*Small screen accommodations.*/
-@media screen and (max-width: 576px){
-    .navbar a{
-        width: 25%; /*Degree of shrinking*/
-        font-size: 12px;
-    }
-}
-
-.navbar a:hover{
+.navbar a:hover {
     background-color: white;
     color: black;
     font-weight: bold;
+    cursor: pointer;
 }
+
 .navbar a.active {
     background-color: #444444;
 }
 
 /*Video Styling*/
-#typing-video{
+#typing-video {
     position: fixed;
     right: 0;
     bottom: 0;
@@ -133,69 +156,181 @@ animation: moveNavText 5.75s;
     z-index: -1;
 }
 
-@media screen and (max-width: 576px){
-    #typing-video{
+/*NAVBAR styling Complete*/
+
+@media screen and (max-width: 576px) {
+    #typing-video {
         display: none;
     }
 }
 
-.video-text{
-    background: rgba(0,0,0,0.5);
+.video-text {
+    background: rgba(0, 0, 0, 0.5);
     color: white;
     width: 100%;
-    padding: 20px;
+    height: 100%;
+    padding-top: 2vh;
     position: relative;
     -webkit-animation: moveVideoText 5.75s;
     animation: moveVideoText 5.75s;
 }
 
-@keyframes moveVideoText{
-    from {top: -100vw;}
-    to {top: 0vw;}
+@keyframes moveVideoText {
+    from {
+        top: -100vw;
+    }
+
+    to {
+        top: 0vw;
+    }
 }
 
 
 /*Table Styling*/
-* { /*This effect effects all elements on the page.*/
+* {
+    /*This effect effects all elements on the page.*/
     box-sizing: border-box;
 }
 
-.left-column{
+
+
+/*Slideshow Styling*/
+#slideshowBackground {
+    background: rgba(255, 255, 255, 0.35);
+}
+
+#slideshowContainer {
+    width: 39.5vw;
+    /*Set to about 39.5% of the viewport width*/
+    height: auto;
+    padding-top: 4%;
+    position: relative;
+    margin: auto;
+}
+
+.mySlides {
+    display: none;
+    /*Otherwise there is no anticipation for the slideshow because the slides would be visible.*/
+}
+
+#slideshowContainer a {
+    text-decoration: none;
+}
+
+.slideshowImages {
+    vertical-align: middle;
+    height: auto;
+    box-shadow: 0px 5px 10px 12px rgba(0, 0, 0, 0.5);
+    width: 100%;
+}
+
+/*Next and Previous Buttons*/
+.Previous,
+.Next {
+    z-index: 5;
+    right: 0;
+    border-radius: 3px 0 0 3px;
+}
+
+.Next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+}
+
+.Previous:hover,
+.Next:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+}
+
+.slideshowText {
+    color: white;
+    padding: 1vw;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    letter-spacing: .1vw;
+    font-size: 1.5vw;
+    background-color: rgba(0, 0, 0, 0.75);
+    font-weight: bold;
+    border-radius: 0 0 7px 7px;
+}
+
+.dot {
+    cursor: pointer;
+    height: 1vw;
+    width: 1vw;
+    margin: .25vw;
+    background-color: #cccccc;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+    z-index: 2;
+}
+
+.dot:hover {
+    background-color: #000000;
+}
+
+.fade {
+    animation-name: fade;
+    animation-duration: 1.5s;
+    -webkit-animation-name: fade;
+    -webkit-animation-duration: 1.5s;
+}
+
+@-webkit-keyframes fade {
+    from {
+        opacity: .4;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fade {
+    from {
+        opacity: .4;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/*End of the Show...of Slides*/
+/*Columns*/
+.right-column {
     float: left;
     width: 50%;
-    padding: 10px;
-    padding-top: 3%;
-    height: 400px;
+    padding: 1.6%;
+    height: 450px;
+    background-color: #444444;
+}
+.left-column {
+    float: left;
+    width: 50%;
+    padding: 1.6%;
+    height: 450px;
     background-color: #f2d2f2;
 }
 
-@media screen and (max-width: 576px){
-    .left-column{
+@media screen and (max-width: 576px) {
+    .left-column {
         overflow: auto;
     }
 }
 
-.right-column{
-    float: left;
-    width: 50%;
-    padding: 10px;
-    padding-top: 1.9%;
-    height: 400px;
-    background-color: #444444;
-}
-
-.column-tall{
-    padding-top: 3.5%;
-    height: 450px;
-}
-
-.row:after{
-    content:"";
+.row:after {
+    content: "";
     display: table;
     clear: both;
 }
 
-input[type=text]{
+input[type=text] {
     width: 100%;
     padding: 12px;
     border: 1px solid #cccccc;
@@ -207,7 +342,186 @@ input[type=text]{
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
-input[type=text]:hover{
-    box-shadow: 2px 2px 5px #000000 inset; /*Give them the appearance of depth when hovered over!*/
+input[type=text]:hover {
+    box-shadow: 2px 2px 5px #000000 inset;
+    /*Give them the appearance of depth when hovered over!*/
     padding: 10x;
+}
+
+/*Accomodations*/
+
+@media screen and (max-width: 576px) {
+    img {
+        height: 100px;
+        margin-top: 150px;
+    }
+}
+
+/*Small screen accommodations.*/
+@media screen and (max-width: 576px) {
+    .navbar a {
+        width: 25%;
+        /*Degree of shrinking*/
+        font-size: 12px;
+    }
+}
+
+/*CONTACT FORM*/
+
+.form-popup {
+    z-index: 8;
+    display: none;
+    position: fixed;
+    bottom: .5vw;
+    right: .5vw;
+}
+
+.form-container {
+    max-width: 49vw;
+    padding: 1vw;
+    background-color: #cccccc;
+}
+
+.form-container input[type=text] {
+    width: 100%;
+    padding: .93vw;
+    margin: .6vw 0 .6vw 0;
+    border: none;
+    background: #cccccc;
+    font-size: 1vw;
+}
+
+button {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    letter-spacing: .3vw;
+    font-size: 1.5vw;
+    font-weight: bold;
+    padding: 1.5vw;
+    cursor: pointer;
+    width: 100%;
+    height: auto;
+}
+
+button:hover, .form-container .btn:hover{
+    color:#cccccc;
+    background-color:#444444;
+    transition-duration: 1s;
+    -webkit-transition-duration: 1s;
+    border-color: silver;
+}
+
+/*submit button specifically*/
+.form-container .btn{
+    background-color: #cccccc;
+    color: #000000;
+    border-color: #000000;
+    margin-bottom: 1vh;
+}
+
+/*close button specifically*/
+.form-container .cancel {
+    background-color: black;
+    color: white;
+    border-color: gray;
+}
+
+.form-container .cancel:hover {
+    color: white;
+    background-color: darkred;
+    transition-duration: 1s;
+    -webkit-transition-duration: 1s;
+    border-color: black;
+}
+
+/*This area handles paragraphs for different screen sizes.*/
+@media screen and (max-width: 527px) {
+    p {
+        font-size: 10px;
+    }
+}
+
+@media screen and (min-width: 528px) and (max-width: 660px) {
+    p {
+        font-size: 12px;
+    }
+}
+
+@media screen and (min-width: 661px) and (max-width: 799px) {
+    p {
+        font-size: 12px;
+    }
+}
+/*
+@media screen and (min-width: 800px) and (max-width: 924px) {
+    p {
+        font-size: 2.5vw;
+    }
+}
+
+@media screen and (min-width: 925px) and (max-width: 1050px) {
+    p {
+        font-size: 2.25vw;
+    }
+}
+
+@media screen and (min-width: 1051px) and (max-width: 1310px) {
+    p {
+        font-size: 2vw;
+    } 
+}
+
+@media screen and (min-width: 1311px) and (max-width: 1535px) {
+    p {
+        font-size: 1.75vw;
+    }
+}
+
+@media screen and (min-width: 1536px) and (max-width: 2269px) {
+    p {
+        font-size: 1.5vw;
+    }
+}
+
+@media screen and (min-width: 2270px) {
+    p {
+        font-size: 1.35vw;
+    }
+} */
+
+/*Media rule for navbar links for different screen sizes*/
+/* Screens 1080px and smaller will display navbar links equally distributed */
+@media screen and (max-width: 1080px) {
+    .Navbar a{
+        width: 20%; /* This sets each navbar link to 1/5 of the navbar */
+        font-size: 2.5vw;
+    }
+}
+
+/* Media rules to enlarge the font of the white text for smaller screens */
+@media screen and (max-width: 1080px) {
+    .quote{
+        font-size: 3.5vw;
+    }
+
+    .white-text {
+        font-size: 4.5vw;
+    }
+}
+
+/* Media rules to increase the size of the columns for larger screens */
+@media screen and (min-width: 1725px) {
+    .Column_1 {
+        height: 550px;
+    }
+    .Column_2 {
+        height: 550px;
+    }
+}
+
+
+/*Media rule to remove margin-top from h1 elements for extra large screens (so that the paragraph text fits in the column*/
+@media screen and (min-width: 2000px) {
+    h1{
+        margin-top: 0;
+    }
 }
